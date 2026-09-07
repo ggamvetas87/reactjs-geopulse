@@ -1,6 +1,8 @@
 // components/Map/CityMarker.tsx
 
+import { useEffect, useRef } from "react";
 import { Marker, Popup } from "react-leaflet";
+import type { Marker as LeafletMarker } from "leaflet";
 import { 
     divIcon
     // Icon
@@ -36,17 +38,26 @@ const selectedIcon = divIcon({
 
 export function CityMarker({ city }: CityMarkerProps) {
     const selectedCityId = useDashboardStore(
-        state => state.selectedCityId,
+        state => state.selectedCityId
     );
 
     const setSelectedCity = useDashboardStore(
-        state => state.selectCity,
+        state => state.selectCity
     );
 
     const isSelected = selectedCityId === city.id;
 
+    const markerRef = useRef<LeafletMarker>(null);
+
+    useEffect(() => {
+        if (isSelected && markerRef.current) {
+            markerRef.current.openPopup();
+        }
+    }, [isSelected]);
+
     return (
-        <Marker 
+        <Marker
+            ref={markerRef}
             position={[city.lat, city.lng]}
             icon={isSelected ? selectedIcon : defaultIcon}
             eventHandlers={{
