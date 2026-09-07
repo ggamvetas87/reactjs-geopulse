@@ -1,0 +1,66 @@
+// data/cities.ts
+
+import type { City } from "@/types/city";
+
+export const cities: City[] = [
+  {
+    id: "athens",
+    name: "Athens",
+    country: "Greece",
+    lat: 37.9838,
+    lng: 23.7275,
+    population: 3_200_000,
+    pollution: 72,
+    temperature: 28,
+  },
+  {
+    id: "rome",
+    name: "Rome",
+    country: "Italy",
+    lat: 41.9028,
+    lng: 12.4964,
+    population: 2_800_000,
+    pollution: 58,
+    temperature: 30,
+  },
+  {
+    id: "paris",
+    name: "Paris",
+    country: "France",
+    lat: 48.8566,
+    lng: 2.3522,
+    population: 11_000_000,
+    pollution: 42,
+    temperature: 22,
+  },
+  {
+    id: "berlin",
+    name: "Berlin",
+    country: "Germany",
+    lat: 52.52,
+    lng: 13.405,
+    population: 3_700_000,
+    pollution: 31,
+    temperature: 19,
+  },
+  {
+    id: "madrid",
+    name: "Madrid",
+    country: "Spain",
+    lat: 40.4168,
+    lng: -3.7038,
+    population: 3_300_000,
+    pollution: 51,
+    temperature: 31,
+  },
+  {
+    id: "london",
+    name: "London",
+    country: "UK",
+    lat: 51.5074,
+    lng: -0.1278,
+    population: 9_000_000,
+    pollution: 48,
+    temperature: 18,
+  },
+];
