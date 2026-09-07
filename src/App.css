@@ -182,3 +182,26 @@
     border-right-color: var(--border);
   }
 }
+
+button {
+  cursor: pointer;
+}
+
+button.active {
+  background-color: #CC0000;
+  border-color: #CC0000;
+  border-radius: 5px;
+}
+
+.tag-low {
+  color: green;
+}
+.tag-moderate {
+  color: orange;
+}
+.tag-high {
+  color: red;
+}
+.tag-veryhigh {
+  color: darkred;
+}

@@ -1,21 +1,31 @@
 // utils/helpers.ts
 
+import { createElement } from "react";
+
+export function renderAsHtml(text: string) {
+  return {
+    dangerouslySetInnerHTML: {
+      __html: text
+    }
+  };
+}
+
 export function getPollutionLabel(pollution?: number) {
   if (pollution === undefined) {
-    return "";
+    return;
   }
 
   if (pollution <= 30) {
-    return "Low pollution";
+    return createElement("span", { className: "tag-low" }, "Low pollution");
   }
 
   if (pollution <= 60) {
-    return "Moderate pollution";
+    return createElement("span", { className: "tag-moderate" }, "Moderate pollution");
   }
 
   if (pollution <= 90) {
-    return "High pollution";
+    return createElement("span", { className: "tag-high" }, "High pollution");
   }
 
-  return "Very High pollution";
+  return createElement("span", { className: "tag-veryhigh" }, "Very High pollution");
 }

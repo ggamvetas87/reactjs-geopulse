@@ -14,7 +14,7 @@ export function CityMarker({ city }: CityMarkerProps) {
         state => state.selectedCityId,
     );
 
-    const selectCity = useDashboardStore(
+    const setSelectedCity = useDashboardStore(
         state => state.selectCity,
     );
 
@@ -33,9 +33,10 @@ export function CityMarker({ city }: CityMarkerProps) {
             <br />
             Temperature: {city.temperature}°C
             <br />
-            {isSelected && <em>Selected City</em>}
             <br />
-            <button onClick={() => selectCity(city.id)}>Select City</button>
+            <button className={isSelected ? "active" : ""} onClick={() => setSelectedCity(city.id)}>
+                {isSelected ? "Selected" : "Select City"}
+            </button>
         </Popup>
         </Marker>
     );
