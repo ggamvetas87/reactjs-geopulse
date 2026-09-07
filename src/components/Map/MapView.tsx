@@ -4,8 +4,7 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import { cities } from "@/data/cities";
 import { CityMarker } from "@/components/Map/CityMarker";
 
-export function MapView() {
-  return (
+export const MapView = () => (
     <MapContainer
       center={[48.8566, 2.3522]}
       zoom={4}
@@ -23,5 +22,4 @@ export function MapView() {
         />
       ))}
     </MapContainer>
-  );
-};
+);

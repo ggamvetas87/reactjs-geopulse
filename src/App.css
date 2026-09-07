@@ -205,3 +205,23 @@ button.active {
 .tag-veryhigh {
   color: darkred;
 }
+
+.city-marker {
+  background: transparent;
+  border: none;
+}
+
+.city-marker div {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #3388ff;
+  border: 3px solid white;
+  box-shadow: 0 0 0 1px #333;
+}
+
+.city-marker.selected div {
+  width: 26px;
+  height: 26px;
+  background: #CC0000;
+}
