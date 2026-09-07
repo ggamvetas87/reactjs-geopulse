@@ -2,6 +2,7 @@
 
 import { MapView } from "@/components/Map/MapView";
 import { CityDetails } from "@/components/Dashboard/CityDetails";
+import { PollutionChart } from "@/components/Dashboard/PollutionChart";
 import "@/App.css";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
 
       <CityDetails />
       <MapView />
+      <PollutionChart />
     </main>
   );
 }

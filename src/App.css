@@ -225,3 +225,7 @@ button.active {
   height: 26px;
   background: #CC0000;
 }
+
+.pollution-chart-container div {
+  margin: 20px auto 0;
+}
