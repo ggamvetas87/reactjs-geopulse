@@ -3,6 +3,7 @@
 import { MapContainer, TileLayer } from "react-leaflet";
 import { cities } from "@/data/cities";
 import { CityMarker } from "@/components/Map/CityMarker";
+import { MapController } from "@/components/Map/MapController";
 
 export const MapView = () => (
     <MapContainer
@@ -14,6 +15,8 @@ export const MapView = () => (
         attribution="&copy; OpenStreetMap contributors"
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
+
+      <MapController />
 
       {cities.map((city) => (
         <CityMarker

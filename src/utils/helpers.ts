@@ -29,3 +29,7 @@ export function getPollutionLabel(pollution?: number) {
 
   return createElement("span", { className: "tag-veryhigh" }, "Very High pollution");
 }
+
+export function formatPopulation(population: number) {
+  return `${(population / 1_000_000).toFixed(1)}M`;
+}

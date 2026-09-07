@@ -26,6 +26,7 @@ export const CustomBar = ({ x, y, width = 60, height = 200, payload, selectedCit
             width={width}
             height={height}
             fill={isSelected ? "#CC0000" : "#8884d8"}
+            cursor="pointer"
             onClick={onBarClick}
         />
     );
