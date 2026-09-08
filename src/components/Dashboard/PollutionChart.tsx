@@ -12,10 +12,10 @@ import {
 } from "recharts";
 import { useDashboardStore } from "@/store/dashboardStore";
 import { useFilteredCities } from "@/hooks/useFilteredCities";
+import { useCitiesQuery } from "@/hooks/useCitiesQuery";
 import { CustomBar } from "@/components/Dashboard/CustomBar";
 import { CustomScatter } from "@/components/Dashboard/CustomScatter";
 import { CustomTooltip } from "./CustomTooltip";
-import { cities } from "@/data/cities";
 
 export const PollutionChart = () => {
     const selectedCityId = useDashboardStore(state => state.selectedCityId);
@@ -23,7 +23,21 @@ export const PollutionChart = () => {
 
     const onCitySelect = (id: string) => selectCity(id);
 
-    const filteredCities = useFilteredCities(cities);
+    const {
+        data: cities,
+        isLoading,
+        isError,
+    } = useCitiesQuery();
+
+    const filteredCities = useFilteredCities(cities ?? []);
+
+    if (isLoading) {
+        return <div>Loading cities...</div>;
+    }
+
+    if (isError) {
+        return <div>Failed to load cities.</div>;
+    }
 
     return (
         <div className="pollution-chart-container">

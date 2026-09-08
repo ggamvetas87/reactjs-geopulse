@@ -1,7 +1,6 @@
 // components/Map/MapView.tsx
 
 import { MapContainer, TileLayer } from "react-leaflet";
-// import { cities } from "@/data/cities";
 import { useCitiesQuery } from "@/hooks/useCitiesQuery";
 import { useFilteredCities } from "@/hooks/useFilteredCities";
 import { CityMarker } from "@/components/Map/CityMarker";
@@ -10,8 +9,21 @@ import { DEFAULT_MAP_CENTER, DEFAULT_MAP_ZOOM } from "@/constants/maps";
 
 export const MapView = () => {
 
-    const { data: cities = [] } = useCitiesQuery();
-    const filteredCities = useFilteredCities(cities);
+    const {
+        data: cities,
+        isLoading,
+        isError,
+    } = useCitiesQuery();
+    
+    const filteredCities = useFilteredCities(cities ?? []);
+
+    if (isLoading) {
+        return <div>Loading cities...</div>;
+    }
+
+    if (isError) {
+        return <div>Failed to load cities.</div>;
+    }
 
     return (
         <MapContainer
