@@ -10,17 +10,21 @@ export const CityFilters = () => {
     const setSelectedCity = useDashboardStore(state => state.selectCity);
 
     return (
-        <select
-            value={pollutionFilter}
-            onChange={(event) => {
-                setPollutionFilter(event.target.value as PollutionFilter);
-                setSelectedCity(null);
-            }}
-        >
-            <option value="all">All</option>
-            <option value="low">Low</option>
-            <option value="moderate">Moderate</option>
-            <option value="high">High</option>
-        </select>
+        <>
+            <label style={{ marginRight: 8 }} htmlFor="pollution-filter">Pollution Filter:</label>
+            <select
+                id="pollution-filter"
+                value={pollutionFilter}
+                onChange={(event) => {
+                    setPollutionFilter(event.target.value as PollutionFilter);
+                    setSelectedCity(null);
+                }}
+            >
+                <option value="all">All</option>
+                <option value="low">Low</option>
+                <option value="moderate">Moderate</option>
+                <option value="high">High</option>
+            </select>
+        </>
     );
 };
