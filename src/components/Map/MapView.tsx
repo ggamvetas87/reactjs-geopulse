@@ -2,27 +2,33 @@
 
 import { MapContainer, TileLayer } from "react-leaflet";
 import { cities } from "@/data/cities";
+import { useFilteredCities } from "@/hooks/useFilteredCities";
 import { CityMarker } from "@/components/Map/CityMarker";
 import { MapController } from "@/components/Map/MapController";
+import { DEFAULT_MAP_CENTER, DEFAULT_MAP_ZOOM } from "@/constants/maps";
 
-export const MapView = () => (
-    <MapContainer
-      center={[48.8566, 2.3522]}
-      zoom={4}
-      style={{ height: "600px", width: "100%" }}
-    >
-      <TileLayer
-        attribution="&copy; OpenStreetMap contributors"
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
+export const MapView = () => {
+    const filteredCities = useFilteredCities(cities);
 
-      <MapController />
-
-      {cities.map((city) => (
-        <CityMarker
-          key={city.id}
-          city={city}
+    return (
+        <MapContainer
+            center={DEFAULT_MAP_CENTER}
+            zoom={DEFAULT_MAP_ZOOM}
+            style={{ height: "600px", width: "100%" }}
+        >
+        <TileLayer
+            attribution="&copy; OpenStreetMap contributors"
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-      ))}
-    </MapContainer>
-);
+
+        <MapController />
+
+        {filteredCities.map((city) => (
+            <CityMarker
+            key={city.id}
+            city={city}
+            />
+        ))}
+        </MapContainer>
+    );
+};

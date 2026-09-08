@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useMap } from "react-leaflet";
 import { cities } from "@/data/cities";
 import { useDashboardStore } from "@/store/dashboardStore";
+import { DEFAULT_MAP_CENTER, DEFAULT_MAP_ZOOM } from "@/constants/maps";
 
 export function MapController() {
     const map = useMap();
@@ -17,7 +18,10 @@ export function MapController() {
     );
 
     useEffect(() => {
-        if (!selectedCity) return;
+        if (!selectedCity) {
+            map.flyTo(DEFAULT_MAP_CENTER, DEFAULT_MAP_ZOOM);
+            return;
+        }
 
         map.flyTo(
             [selectedCity.lat, selectedCity.lng],

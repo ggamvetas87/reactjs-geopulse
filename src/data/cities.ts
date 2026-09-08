@@ -30,7 +30,7 @@ export const cities: City[] = [
     lat: 48.8566,
     lng: 2.3522,
     population: 11_000_000,
-    pollution: 42,
+    pollution: 30,
     temperature: 22,
   },
   {

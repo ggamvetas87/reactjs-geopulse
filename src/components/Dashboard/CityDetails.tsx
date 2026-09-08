@@ -19,7 +19,7 @@ export function CityDetails() {
 
     return (
         <div>
-            <h2>{selectedCity.name}</h2>
+            <h2 style={{ marginTop: 20 }}>{selectedCity.name}</h2>
             <p>Country: {selectedCity.country}</p>
             <p>Population: {selectedCity.population.toLocaleString()}</p>
             <p>Pollution: {getPollutionLabel(selectedCity.pollution)}</p>

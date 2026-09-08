@@ -11,6 +11,7 @@ import {
     CartesianGrid
 } from "recharts";
 import { useDashboardStore } from "@/store/dashboardStore";
+import { useFilteredCities } from "@/hooks/useFilteredCities";
 import { CustomBar } from "@/components/Dashboard/CustomBar";
 import { CustomScatter } from "@/components/Dashboard/CustomScatter";
 import { CustomTooltip } from "./CustomTooltip";
@@ -18,15 +19,16 @@ import { cities } from "@/data/cities";
 
 export const PollutionChart = () => {
     const selectedCityId = useDashboardStore(state => state.selectedCityId);
-    const setSelectedCityId = useDashboardStore(state => state.selectCity);
-    // const filteredCities = selectedCityId ? cities.filter(city => city.id === selectedCityId) : cities;
+    const selectCity = useDashboardStore(state => state.selectCity);
 
-    const onCitySelect = (id: string) => setSelectedCityId(id);
+    const onCitySelect = (id: string) => selectCity(id);
+
+    const filteredCities = useFilteredCities(cities);
 
     return (
         <div className="pollution-chart-container">
             <h3>Pollution Levels</h3>
-            <BarChart width={600} height={300} data={cities}>
+            <BarChart width={600} height={300} data={filteredCities}>
                 <XAxis dataKey="name" />
                 <YAxis />
                 <Tooltip />
@@ -47,7 +49,7 @@ export const PollutionChart = () => {
                 <YAxis dataKey="pollution" />
                 <Tooltip content={<CustomTooltip />} />
                 <Scatter 
-                    data={cities}
+                    data={filteredCities}
                     fill="#787797"
                     line={true}
                     shape={props => (
