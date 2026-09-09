@@ -10,8 +10,8 @@ interface MapState {
 export const useMapStore = create<MapState>((set) => ({
     showHeatmap: true,
 
-    toggleHeatmap: (value?: boolean) =>
+    toggleHeatmap: () =>
         set(state => ({
-            showHeatmap: value ?? !state.showHeatmap
+            showHeatmap: !state.showHeatmap
         }))
 }));
