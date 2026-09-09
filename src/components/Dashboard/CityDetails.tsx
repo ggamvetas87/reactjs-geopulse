@@ -1,16 +1,15 @@
 // components/Dashboard/CityDetails.tsx
 
 // import { cities } from "@/data/cities";
-import { useCitiesQuery } from "@/hooks/useCitiesQuery";
+import type { City } from "@/types/city";
 import { useDashboardStore } from "@/store/dashboardStore";
 import { getPollutionLabel } from "@/utils/helpers";
 
-export function CityDetails() {
+export function CityDetails({ cities = [] }: { cities: City[] }) {
     const selectedCityId = useDashboardStore(
         state => state.selectedCityId,
     );
 
-    const { data: cities } = useCitiesQuery();
     const selectedCity = cities?.find(
         city => city.id === selectedCityId,
     );
