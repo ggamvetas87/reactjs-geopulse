@@ -74,11 +74,6 @@ export function CityMarker({ city }: CityMarkerProps) {
                 Pollution: {getPollutionLabel(city.pollution)}
                 <br />
                 Temperature: {city.temperature}°C
-                <br />
-                <br />
-                <button className={isSelected ? "active" : ""} onClick={() => setSelectedCity(city.id)}>
-                    {isSelected ? "Selected" : "Select City"}
-                </button>
             </Popup>
         </Marker>
     );
