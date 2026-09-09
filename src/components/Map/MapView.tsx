@@ -1,13 +1,20 @@
 // components/Map/MapView.tsx
 
 import { MapContainer, TileLayer } from "react-leaflet";
+import { useMapStore } from "@/store/mapStore";
 import { useFilteredCities } from "@/hooks/useFilteredCities";
 import { CityMarker } from "@/components/Map/CityMarker";
 import { MapController } from "@/components/Map/MapController";
+import { HeatmapLayer } from "@/components/Map/HeatmapLayer";
 import { DEFAULT_MAP_CENTER, DEFAULT_MAP_ZOOM } from "@/constants/maps";
 import type { City } from "@/types/city";
 
-export const MapView = ({ cities = [] }: { cities: City[] }) => {
+type MapViewProps = {
+  cities: City[];
+};
+
+export const MapView = ({ cities }: MapViewProps) => {
+    const showHeatmap = useMapStore(state => state.showHeatmap);
 
     const filteredCities = useFilteredCities(cities ?? []);
 
@@ -21,6 +28,8 @@ export const MapView = ({ cities = [] }: { cities: City[] }) => {
             attribution="&copy; OpenStreetMap contributors"
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+
+        {showHeatmap && <HeatmapLayer cities={filteredCities} />}
 
         <MapController />
 

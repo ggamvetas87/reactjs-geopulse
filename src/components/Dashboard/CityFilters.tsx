@@ -1,6 +1,7 @@
 // components/Dashboard/CityFilters.tsx
 
 import { useDashboardStore } from "@/store/dashboardStore";
+import { useMapStore } from "@/store/mapStore";
 import type { PollutionFilter } from "@/store/dashboardStore";
 
 export const CityFilters = () => {
@@ -8,6 +9,9 @@ export const CityFilters = () => {
     const setPollutionFilter = useDashboardStore(state => state.setPollutionFilter);
 
     const setSelectedCity = useDashboardStore(state => state.selectCity);
+
+    const showHeatmap = useMapStore(state => state.showHeatmap);
+    const toggleHeatmap = useMapStore(state => state.toggleHeatmap);
 
     return (
         <>
@@ -25,6 +29,15 @@ export const CityFilters = () => {
                 <option value="moderate">Moderate</option>
                 <option value="high">High</option>
             </select>
+
+            <label style={{ marginLeft: 16 }}>
+                <input
+                    type="checkbox"
+                    checked={showHeatmap}
+                    onChange={toggleHeatmap}
+                />
+                {" "}Show heatmap
+            </label>
         </>
     );
 };
