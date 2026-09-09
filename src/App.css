@@ -215,15 +215,30 @@ button.active {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #3388ff;
   border: 3px solid white;
   box-shadow: 0 0 0 1px #333;
+}
+
+.city-marker-low div {
+  background: green;
+}
+
+.city-marker-moderate div {
+  background: orange;
+}
+
+.city-marker-high div {
+  background: red;
+}
+
+.city-marker-veryhigh div {
+  background: darkred;
 }
 
 .city-marker.selected div {
   width: 26px;
   height: 26px;
-  background: #CC0000;
+  background: #cc0000;
 }
 
 .custom-tooltip {
@@ -344,11 +359,66 @@ button.active {
   font-size: 16px;
 }
 
+.map-container-wrapper {
+  position: relative;
+}
+
+.map-legend {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.map-legend strong {
+  margin-bottom: 4px;
+}
+
+.map-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.map-legend-marker {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 0 1px #333;
+}
+
+.map-legend-low {
+  background: green;
+}
+
+.map-legend-moderate {
+  background: orange;
+}
+
+.map-legend-high {
+  background: red;
+}
+
+.map-legend-veryhigh {
+  background: darkred;
+}
+
 .pollution-chart-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-top: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 16px;
 }
 
 .chart-card {

@@ -1,6 +1,8 @@
 // utils/helpers.ts
 
 import { createElement } from "react";
+import { pollutionLabels } from "@/constants/pollution";
+import type { PollutionLevel } from "@/types/pollution";
 
 export function renderAsHtml(text: string) {
   return {
@@ -10,24 +12,40 @@ export function renderAsHtml(text: string) {
   };
 }
 
-export function getPollutionLabel(pollution?: number) {
+export function getPollutionLevel(
+    pollution?: number
+): PollutionLevel | undefined {
   if (pollution === undefined) {
     return;
   }
 
   if (pollution <= 30) {
-    return createElement("span", { className: "tag-low" }, "Low pollution");
+    return "low";
   }
 
   if (pollution <= 60) {
-    return createElement("span", { className: "tag-moderate" }, "Moderate pollution");
+    return "moderate";
   }
 
   if (pollution <= 90) {
-    return createElement("span", { className: "tag-high" }, "High pollution");
+    return "high";
   }
 
-  return createElement("span", { className: "tag-veryhigh" }, "Very High pollution");
+  return "veryhigh";
+}
+
+export function getPollutionLabel(pollution?: number) {
+  const level = getPollutionLevel(pollution);
+
+  if (!level) {
+    return;
+  }
+
+  return createElement(
+    "span",
+    { className: `tag-${level}` },
+    pollutionLabels[level]
+  );
 }
 
 export function formatPopulation(population: number) {

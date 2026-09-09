@@ -6,6 +6,7 @@ import { useFilteredCities } from "@/hooks/useFilteredCities";
 import { CityMarker } from "@/components/Map/CityMarker";
 import { MapController } from "@/components/Map/MapController";
 import { HeatmapLayer } from "@/components/Map/HeatmapLayer";
+import { MapLegend } from "@/components/Map/MapLegend";
 import { DEFAULT_MAP_CENTER, DEFAULT_MAP_ZOOM } from "@/constants/maps";
 import type { City } from "@/types/city";
 
@@ -18,26 +19,30 @@ export const MapView = ({ cities }: MapViewProps) => {
     const filteredCities = useFilteredCities(cities ?? []);
 
     return (
-        <MapContainer
-            className="map-container"
-            center={DEFAULT_MAP_CENTER}
-            zoom={DEFAULT_MAP_ZOOM}
-        >
-        <TileLayer
-            attribution="&copy; OpenStreetMap contributors"
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
+        <div className="map-container-wrapper">
+            <MapContainer
+                className="map-container"
+                center={DEFAULT_MAP_CENTER}
+                zoom={DEFAULT_MAP_ZOOM}
+            >
+                <TileLayer
+                    attribution="&copy; OpenStreetMap contributors"
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
 
-        {showHeatmap && <HeatmapLayer cities={filteredCities} />}
+                {showHeatmap && <HeatmapLayer cities={filteredCities} />}
 
-        <MapController cities={cities} />
+                <MapController cities={cities} />
 
-        {filteredCities.map((city) => (
-            <CityMarker
-                key={city.id}
-                city={city}
-            />
-        ))}
-        </MapContainer>
+                {filteredCities.map((city) => (
+                    <CityMarker
+                        key={city.id}
+                        city={city}
+                    />
+                ))}
+            </MapContainer>
+            
+            <MapLegend />
+        </div>
     );
 };

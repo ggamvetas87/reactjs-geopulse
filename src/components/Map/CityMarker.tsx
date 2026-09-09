@@ -3,38 +3,40 @@
 import { useEffect, useRef } from "react";
 import { Marker, Popup } from "react-leaflet";
 import type { Marker as LeafletMarker } from "leaflet";
-import { 
-    divIcon
-    // Icon
-} from "leaflet";
+import { divIcon } from "leaflet";
 import { useDashboardStore } from "@/store/dashboardStore";
 import type { City } from "@/types/city";
-import { getPollutionLabel } from "@/utils/helpers";
+import type { PollutionLevel } from "@/types/pollution";
+import { getPollutionLevel, getPollutionLabel } from "@/utils/helpers";
 
 type CityMarkerProps = {
   city: City;
 };
 
-// const defaultIcon = new Icon({
-//   iconUrl: "/marker-icon.png",
-//   iconSize: [25, 41],
-//   iconAnchor: [12, 41],
-//   popupAnchor: [1, -34],
-// });
+const createMarkerIcon = (level: PollutionLevel, selected = false) =>
+  divIcon({
+    className: `city-marker city-marker-${level}${selected ? " selected" : ""}`,
+    html: "<div></div>",
+    iconSize: selected ? [26, 26] : [20, 20],
+    iconAnchor: selected ? [13, 13] : [10, 10],
+  });
 
-const defaultIcon = divIcon({
-  className: "city-marker",
-  html: "<div></div>",
-  iconSize: [20, 20],
-  iconAnchor: [10, 10],
-});
+const markerIcons: Record<PollutionLevel, ReturnType<typeof divIcon>> = {
+  low: createMarkerIcon("low"),
+  moderate: createMarkerIcon("moderate"),
+  high: createMarkerIcon("high"),
+  veryhigh: createMarkerIcon("veryhigh"),
+};
 
-const selectedIcon = divIcon({
-  className: "city-marker selected",
-  html: "<div></div>",
-  iconSize: [26, 26],
-  iconAnchor: [13, 13],
-});
+const selectedMarkerIcons: Record<
+  PollutionLevel,
+  ReturnType<typeof divIcon>
+> = {
+  low: createMarkerIcon("low", true),
+  moderate: createMarkerIcon("moderate", true),
+  high: createMarkerIcon("high", true),
+  veryhigh: createMarkerIcon("veryhigh", true),
+};
 
 export function CityMarker({ city }: CityMarkerProps) {
     const selectedCityId = useDashboardStore(
@@ -45,6 +47,7 @@ export function CityMarker({ city }: CityMarkerProps) {
         state => state.selectCity
     );
 
+    const pollutionLevel = getPollutionLevel(city.pollution) ?? "low";
     const isSelected = selectedCityId === city.id;
     const markerRef = useRef<LeafletMarker>(null);
 
@@ -62,7 +65,11 @@ export function CityMarker({ city }: CityMarkerProps) {
         <Marker
             ref={markerRef}
             position={[city.lat, city.lng]}
-            icon={isSelected ? selectedIcon : defaultIcon}
+            icon={
+                isSelected
+                    ? selectedMarkerIcons[pollutionLevel]
+                    : markerIcons[pollutionLevel]
+            }
             eventHandlers={{
               click: () => setSelectedCity(city.id)
             }}

@@ -28,6 +28,7 @@ export const CityFilters = () => {
                 <option value="low">Low</option>
                 <option value="moderate">Moderate</option>
                 <option value="high">High</option>
+                <option value="veryhigh">Very High</option>
             </select>
 
             <label style={{ marginLeft: 16 }}>

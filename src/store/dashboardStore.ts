@@ -1,6 +1,7 @@
 // store/dashboardStore.ts
 
 import { create } from "zustand";
+import type { PollutionLevel } from "@/types/pollution";
 
 type DashboardStore = {
   selectedCityId: string | null;
@@ -9,7 +10,7 @@ type DashboardStore = {
   setPollutionFilter: (filter: PollutionFilter) => void;
 };
 
-export type PollutionFilter = "all" | "low" | "moderate" | "high";
+export type PollutionFilter = "all" | PollutionLevel;
 
 export const useDashboardStore = create<DashboardStore>(set => ({
   selectedCityId: null,
