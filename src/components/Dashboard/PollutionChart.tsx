@@ -54,7 +54,7 @@ export const PollutionChart = ({ cities = [] }: PollutionChartProps) => {
     return (
         <div className="pollution-chart-container">
             <div className="chart-card">
-                <h3>Pollution Levels</h3>
+                <h3>Pollution Levels by City</h3>
                 <ResponsiveContainer width="100%" height={300}>
                     <BarChart 
                         data={filteredCities}
