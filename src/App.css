@@ -244,3 +244,33 @@ button.active {
   display: block;
   margin-bottom: 3px;
 }
+
+.main-layout {
+  width: 100%;
+}
+
+.main-layout main {
+  padding: 16px;
+}
+
+.dashboard-map {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.city-details {
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #ddd;
+}
+
+.city-details h2 {
+  margin-top: 0;
+  color: #333;
+}
+.city-details p {
+  color: #333;
+}

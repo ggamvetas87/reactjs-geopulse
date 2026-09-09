@@ -15,24 +15,30 @@ export const Homepage = () => {
     isError,
   } = useCitiesQuery();
 
-  let content;
-  
   if (isLoading || isError) {
-    content = <LoadingOrError isLoading={isLoading} isError={isError} />;
-  } else {
-    content = (
-      <>
-        <CityFilters />
-        <CityDetails cities={cities ?? []} />
-        <MapView cities={cities ?? []} />
-        <PollutionChart cities={cities ?? []} />
-      </>
+    return (
+      <MainLayout>
+        <LoadingOrError
+          isLoading={isLoading}
+          isError={isError}
+        />
+      </MainLayout>
     );
   }
 
   return (
     <MainLayout>
-      {content}
+      <CityFilters />
+
+      <div className="dashboard-map">
+        <MapView cities={cities ?? []} />
+
+        <aside className="city-details">
+          <CityDetails cities={cities ?? []} />
+        </aside>
+      </div>
+
+      <PollutionChart cities={cities ?? []} />
     </MainLayout>
   );
 };
