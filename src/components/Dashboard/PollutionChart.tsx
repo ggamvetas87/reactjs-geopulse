@@ -8,7 +8,8 @@ import {
     Tooltip,
     ScatterChart,
     Scatter,
-    CartesianGrid
+    CartesianGrid,
+    ResponsiveContainer
 } from "recharts";
 import { useDashboardStore } from "@/store/dashboardStore";
 import { useFilteredCities } from "@/hooks/useFilteredCities";
@@ -31,37 +32,44 @@ export const PollutionChart = ({ cities = [] }: PollutionChartProps) => {
 
     return (
         <div className="pollution-chart-container">
-            <h3>Pollution Levels</h3>
-            <BarChart width={600} height={300} data={filteredCities}>
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Bar 
-                    dataKey="pollution"
-                    fill="#8884d8"
-                    shape={props => (
-                        <CustomBar {...props} selectedCityId={selectedCityId} onBarClick={() => onCitySelect(props.payload.id)} />
-                    )}
-                />
-            </BarChart>
-            <br />
+            <div className="chart-card">
+                <h3>Pollution Levels</h3>
+                <ResponsiveContainer width="100%" height={300}>
+                    <BarChart data={filteredCities}>
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        <Tooltip />
+                        <Bar 
+                            dataKey="pollution"
+                            fill="#8884d8"
+                            shape={props => (
+                                <CustomBar {...props} selectedCityId={selectedCityId} onBarClick={() => onCitySelect(props.payload.id)} />
+                            )}
+                        />
+                    </BarChart>
+                </ResponsiveContainer>
+            </div>
 
-            <h3>Population vs Pollution</h3>
-            <ScatterChart width={600} height={300}>
-                <CartesianGrid strokeDasharray="1 10" />
-                <XAxis dataKey="population" tickFormatter={(value) => `${value / 1_000_000}M`} />
-                <YAxis dataKey="pollution" />
-                <Tooltip content={<CustomTooltip />} />
-                <Scatter 
-                    data={filteredCities}
-                    fill="#787797"
-                    line={true}
-                    shape={props => (
-                        <CustomScatter {...props} selectedCityId={selectedCityId} />
-                    )}
-                    onClick={data => onCitySelect(data.payload.id)}
-                />
-            </ScatterChart>
+            <div className="chart-card">
+                <h3>Population vs Pollution</h3>
+                <ResponsiveContainer width="100%" height={300}>
+                    <ScatterChart>
+                        <CartesianGrid strokeDasharray="1 10" />
+                        <XAxis dataKey="population" tickFormatter={(value) => `${value / 1_000_000}M`} />
+                        <YAxis dataKey="pollution" />
+                        <Tooltip content={<CustomTooltip />} />
+                        <Scatter 
+                            data={filteredCities}
+                            fill="#787797"
+                            line={true}
+                            shape={props => (
+                                <CustomScatter {...props} selectedCityId={selectedCityId} />
+                            )}
+                            onClick={data => onCitySelect(data.payload.id)}
+                        />
+                    </ScatterChart>
+                </ResponsiveContainer>
+            </div>
         </div>
     );
 };

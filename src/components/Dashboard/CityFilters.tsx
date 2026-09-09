@@ -14,7 +14,7 @@ export const CityFilters = () => {
     const toggleHeatmap = useMapStore(state => state.toggleHeatmap);
 
     return (
-        <>
+        <div className="city-filters">
             <label style={{ marginRight: 8 }} htmlFor="pollution-filter">Pollution Filter:</label>
             <select
                 id="pollution-filter"
@@ -38,6 +38,6 @@ export const CityFilters = () => {
                 />
                 {" "}Show heatmap
             </label>
-        </>
+        </div>
     );
 };

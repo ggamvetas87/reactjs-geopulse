@@ -15,14 +15,13 @@ type MapViewProps = {
 
 export const MapView = ({ cities }: MapViewProps) => {
     const showHeatmap = useMapStore(state => state.showHeatmap);
-
     const filteredCities = useFilteredCities(cities ?? []);
 
     return (
         <MapContainer
+            className="map-container"
             center={DEFAULT_MAP_CENTER}
             zoom={DEFAULT_MAP_ZOOM}
-            style={{ height: "600px", width: "100%" }}
         >
         <TileLayer
             attribution="&copy; OpenStreetMap contributors"
