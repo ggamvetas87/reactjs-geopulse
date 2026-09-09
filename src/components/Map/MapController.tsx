@@ -2,18 +2,22 @@
 
 import { useEffect } from "react";
 import { useMap } from "react-leaflet";
-import { cities } from "@/data/cities";
 import { useDashboardStore } from "@/store/dashboardStore";
 import { DEFAULT_MAP_CENTER, DEFAULT_MAP_ZOOM } from "@/constants/maps";
+import type { City } from "@/types/city";
 
-export function MapController() {
+type MapViewProps = {
+  cities: City[];
+};
+    
+export function MapController({ cities = [] }: MapViewProps) {
     const map = useMap();
 
     const selectedCityId = useDashboardStore(
         state => state.selectedCityId
     );
 
-    const selectedCity = cities.find(
+    const selectedCity = cities?.find(
         city => city.id === selectedCityId
     );
 

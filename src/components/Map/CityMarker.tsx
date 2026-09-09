@@ -46,12 +46,15 @@ export function CityMarker({ city }: CityMarkerProps) {
     );
 
     const isSelected = selectedCityId === city.id;
-
     const markerRef = useRef<LeafletMarker>(null);
 
     useEffect(() => {
-        if (isSelected && markerRef.current) {
-            markerRef.current.openPopup();
+        if (!markerRef.current) return;
+
+        if (isSelected) {
+            markerRef?.current.openPopup();
+        } else {
+            markerRef?.current.closePopup();
         }
     }, [isSelected]);
 

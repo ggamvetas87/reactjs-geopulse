@@ -30,7 +30,7 @@ export const MapView = ({ cities }: MapViewProps) => {
 
         {showHeatmap && <HeatmapLayer cities={filteredCities} />}
 
-        <MapController />
+        <MapController cities={cities} />
 
         {filteredCities.map((city) => (
             <CityMarker
