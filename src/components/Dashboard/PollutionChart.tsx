@@ -17,7 +17,11 @@ import { CustomScatter } from "@/components/Dashboard/CustomScatter";
 import { CustomTooltip } from "@/components/Dashboard/CustomTooltip";
 import type { City } from "@/types/city";
 
-export const PollutionChart = ({ cities = [] }: { cities: City[] }) => {
+type PollutionChartProps = {
+  cities: City[];
+};
+
+export const PollutionChart = ({ cities = [] }: PollutionChartProps) => {
     const selectedCityId = useDashboardStore(state => state.selectedCityId);
     const selectCity = useDashboardStore(state => state.selectCity);
 

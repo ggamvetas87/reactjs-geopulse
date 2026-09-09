@@ -5,7 +5,11 @@ import type { City } from "@/types/city";
 import { useDashboardStore } from "@/store/dashboardStore";
 import { getPollutionLabel } from "@/utils/helpers";
 
-export function CityDetails({ cities = [] }: { cities: City[] }) {
+type CityDetailsProps = {
+  cities: City[];
+};
+
+export function CityDetails({ cities = [] }: CityDetailsProps) {
     const selectedCityId = useDashboardStore(
         state => state.selectedCityId,
     );
