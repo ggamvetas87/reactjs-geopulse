@@ -56,7 +56,7 @@ export const DashboardStats = ({
                         </strong>
 
                         <span className="stat-meta">
-                            {highestPollutionCity.pollution} —{" "}
+                            {highestPollutionCity.pollution} — {" "}
                             {getPollutionLabel(
                                 highestPollutionCity.pollution
                             )}

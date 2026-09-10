@@ -12,6 +12,8 @@ type DashboardStore = {
 
   searchQuery: string;
   setSearchQuery: (query: string) => void;
+
+  resetFilters: () => void;
 };
 
 export type PollutionFilter = "all" | PollutionLevel;
@@ -31,4 +33,12 @@ export const useDashboardStore = create<DashboardStore>(set => ({
   setSearchQuery: query => {
     set({ searchQuery: query });
   },
+
+  resetFilters: () => {
+    set({
+      selectedCityId: null,
+      pollutionFilter: "all",
+      searchQuery: ""
+    });
+  }
 }));

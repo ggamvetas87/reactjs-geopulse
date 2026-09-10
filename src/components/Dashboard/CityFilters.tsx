@@ -1,5 +1,7 @@
 // components/Dashboard/CityFilters.tsx
 
+import { useEffect, useState } from "react";
+import { useDebounce } from "@/hooks/useDebounce";
 import { useDashboardStore } from "@/store/dashboardStore";
 import { useMapStore } from "@/store/mapStore";
 import type { PollutionFilter } from "@/store/dashboardStore";
@@ -21,6 +23,22 @@ export const CityFilters = () => {
         state => state.setSearchQuery
     );
 
+    const resetFilters = useDashboardStore(
+        state => state.resetFilters
+    );
+
+    const [searchInput, setSearchInput] = useState(searchQuery);
+    const debouncedSearch = useDebounce(searchInput, 300);
+
+    const handleResetFilters = () => {
+        setSearchInput("");
+        resetFilters();
+    };
+
+    useEffect(() => {
+        setSearchQuery(debouncedSearch);
+    }, [debouncedSearch, setSearchQuery]);
+
     return (
         <div className="city-filters">
             <div className="city-filter-group">
@@ -31,13 +49,27 @@ export const CityFilters = () => {
                 <input
                     id="city-search"
                     type="search"
-                    value={searchQuery}
+                    value={searchInput}
                     placeholder="Search city..."
                     onChange={(event) => {
-                        setSearchQuery(event.target.value);
+                        setSearchInput(event.target.value);
                         setSelectedCity(null);
                     }}
                 />
+
+                {searchInput && (
+                    <button
+                        type="button"
+                        className="city-search-clear"
+                        onClick={() => {
+                            setSearchInput("");
+                            setSelectedCity(null);
+                        }}
+                        aria-label="Clear search"
+                    >
+                        ×
+                    </button>
+                )}
             </div>
 
             <div className="city-filter-group">
@@ -66,6 +98,14 @@ export const CityFilters = () => {
                     {" "}<span>Show heatmap</span>
                 </label>
             </div>
+
+            <button
+                type="button"
+                className="city-filters-reset"
+                onClick={handleResetFilters}
+            >
+                Reset filters
+            </button>
         </div>
     );
 };
