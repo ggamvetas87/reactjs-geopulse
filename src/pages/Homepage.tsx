@@ -2,6 +2,7 @@
 
 import { useCitiesQuery } from "@/hooks/useCitiesQuery";
 import { MainLayout } from "@/layouts/MainLayout";
+import { DashboardStats } from "@/components/Dashboard/DashboardStats";
 import { MapView } from "@/components/Map/MapView";
 import { CityDetails } from "@/components/Dashboard/CityDetails";
 import { PollutionChart } from "@/components/Dashboard/PollutionChart";
@@ -30,6 +31,7 @@ export const Homepage = () => {
     <MainLayout>
       <CityFilters />
 
+      <DashboardStats cities={cities ?? []} />
       <div className="dashboard-map">
         <MapView cities={cities ?? []} />
 
@@ -37,7 +39,7 @@ export const Homepage = () => {
           <CityDetails cities={cities ?? []} />
         </aside>
       </div>
-
+      
       <PollutionChart cities={cities ?? []} />
     </MainLayout>
   );

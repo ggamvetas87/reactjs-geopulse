@@ -6,8 +6,12 @@ import type { PollutionLevel } from "@/types/pollution";
 type DashboardStore = {
   selectedCityId: string | null;
   selectCity: (cityId: string | null) => void;
+
   pollutionFilter: PollutionFilter;
   setPollutionFilter: (filter: PollutionFilter) => void;
+
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
 };
 
 export type PollutionFilter = "all" | PollutionLevel;
@@ -21,5 +25,10 @@ export const useDashboardStore = create<DashboardStore>(set => ({
   pollutionFilter: "all",
   setPollutionFilter: filter => {
     set({ pollutionFilter: filter });
+  },
+
+  searchQuery: "",
+  setSearchQuery: query => {
+    set({ searchQuery: query });
   },
 }));

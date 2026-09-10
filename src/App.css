@@ -433,6 +433,150 @@ button.active {
   margin-top: 0;
 }
 
+/* City Filters styles */
+
+.city-filters {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 12px 0;
+  background: #16171d;
+}
+
+.city-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.city-filter-group label,
+.city-filter-checkbox {
+  font-size: 14px;
+  color: #fff;
+}
+
+.city-filter-group input,
+.city-filter-group select {
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+  box-sizing: border-box;
+  color: #444;
+}
+
+.city-filter-group input {
+  width: 220px;
+}
+
+.city-filter-group input:focus,
+.city-filter-group select:focus {
+  outline: none;
+  border-color: #888;
+}
+
+.city-filter-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.city-filter-checkbox input {
+  width: 25px;
+  height: 20px;
+}
+
+
+/* Dashboard Stats styles */
+
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.stat-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #777;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.stat-value {
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.stat-meta {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  min-height: 20px;
+  font-size: 13px;
+  color: #777;
+}
+
+/* Pollution labels */
+.stat-meta .tag-low {
+  color: green;
+}
+
+.stat-meta .tag-moderate {
+  color: orange;
+}
+
+.stat-meta .tag-high {
+  color: red;
+}
+
+.stat-meta .tag-veryhigh {
+  color: darkred;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .dashboard-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .dashboard-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Responsive styles for the dashboard map and related components */
 @media (max-width: 900px) {
   .dashboard-map {
     grid-template-columns: 1fr;

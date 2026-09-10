@@ -16,3 +16,18 @@ export function filterCitiesByPollution(
         city => getPollutionLevel(city.pollution) === filter
     );
 }
+
+export function filterCitiesBySearch(
+    cities: City[],
+    searchQuery: string
+): City[] {
+    const query = searchQuery.trim().toLowerCase();
+
+    if (!query) {
+        return cities;
+    }
+
+    return cities.filter(city =>
+        city.name.toLowerCase().includes(query)
+    );
+}
