@@ -1,5 +1,6 @@
 // pages/Homepage.tsx
 
+import { useUrlFilters } from "@/hooks/useUrlFilters";
 import { useCitiesQuery } from "@/hooks/useCitiesQuery";
 import { MainLayout } from "@/layouts/MainLayout";
 import { DashboardStats } from "@/components/Dashboard/DashboardStats";
@@ -10,6 +11,8 @@ import { CityFilters } from "@/components/Dashboard/CityFilters";
 import { LoadingOrError } from "@/components/LoadingOrError";
 
 export const Homepage = () => {
+  useUrlFilters();
+  
   const {
     data: cities,
     isLoading,
