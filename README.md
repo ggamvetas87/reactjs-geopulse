@@ -4,6 +4,13 @@
 
 The project is built as a practical frontend engineering exercise, with an emphasis on clean `component architecture`, `reusable hooks`, `state management`, `server-state management` and interactive data visualization.
 
+## Screenshots
+
+![geopulse-1](docs/screenshots/geopulse-1.png "Geopulse - Filters and interactive Map")
+
+![geopulse-2](docs/screenshots/geopulse-2.png "Geopulse - Selected City and Visual Charts")
+
+
 ## Features
 
 ### Interactive map
